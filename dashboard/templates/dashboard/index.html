@@ -1,0 +1,79 @@
+{% extends 'dashboard/base.html' %}
+
+{% block title %}
+Home - Start Bootstrap
+{% endblock %}
+
+{% block content %}
+<div id="layoutSidenav_content">
+  <div class="container mt-5">
+    <div class="d-flex justify-content-between">
+      <h1 class="mb-4">Mis videos</h1>
+      <form class="d-none d-md-inline-block form-inline">
+        <div class="input-group">
+          <input class="form-control" type="text" placeholder="Buscar por ID de Audiencia..." aria-label="Buscar por id_audiencia..." aria-describedby="btnNavbarSearch" id="searchInput" />
+          <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
+        </div>
+      </form>
+    </div>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Cédula</th>
+          <th scope="col">ID Audiencia</th>
+          <th scope="col">ID Comparendo</th>
+          <th scope="col">Video</th>
+          <th scope="col">Fecha de subida</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for video in videos %}
+        <tr>
+          <th scope="row">{{ forloop.counter }}</th>
+          <td>{{ video.cedula }}</td>
+          <td>{{ video.id_audiencia }}</td>
+          <td>{{ video.id_comparendo }}</td>
+          <td><a href="{{ video.video.url }}" target="_blank">{{ video.video.name }}</a></td>
+          <td>{{ video.fecha_subida }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="6" class="text-center">No se encontraron videos</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+<!-- ...y así sucesivamente para los demás bloques de contenido en la página -->
+<script>
+  // Obtener la tabla
+  var table = document.getElementById("videosTable");
+
+  // Obtener el input de búsqueda
+  var input = document.getElementById("searchInput");
+
+  // Agregar un evento de clic al botón de búsqueda
+  document.getElementById("btnNavbarSearch").addEventListener("click", function() {
+      var filter = input.value.toUpperCase();
+      var rows = table.getElementsByTagName("tr");
+
+      // Recorrer todas las filas de la tabla y ocultar las que no coincidan con el término de búsqueda
+      for (var i = 0; i < rows.length; i++) {
+          var id_audiencia = rows[i].getElementsByTagName("td")[2];
+
+          if (id_audiencia) {
+              var textValue = id_audiencia.textContent || id_audiencia.innerText;
+
+              if (textValue.toUpperCase().indexOf(filter) > -1) {
+                  rows[i].style.display = "";
+              } else {
+                  rows[i].style.display = "none";
+              }
+          }
+      }
+  });
+</script>
+
+{% endblock %}
