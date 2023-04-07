@@ -41,6 +41,9 @@ INSTALLED_APPS = [
     'dashboard',
     'authentication',
     'video_upload',
+    'reportarbugs',
+    'zoho_integration',
+    'capacitaciones',
 ]
 
 MIDDLEWARE = [

@@ -1,0 +1,11 @@
+Django==4.1.7
+mysqlclient==2.1.1
+boto3==1.26.104
+django-environ
+PyMySQL
+--use-pep517 moviepy
+autopep8
+google-auth 
+google-auth-oauthlib 
+google-auth-httplib2 
+google-api-python-client

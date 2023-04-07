@@ -1,0 +1,67 @@
+/* Estilos para el acordeón */
+.accordion-button {
+    background-color: #F5F5F5;
+    color: #444444;
+    border-radius: 0;
+    border: none;
+    border-bottom: 1px solid #E6E6E6;
+  }
+  
+  .accordion-button:hover {
+    background-color: #E6E6E6;
+  }
+  
+  .accordion-button:not(.collapsed) {
+    background-color: #E6E6E6;
+  }
+  
+  .accordion-body {
+    background-color: #F5F5F5;
+    padding: 10px;
+  }
+  
+  /* Estilos para el Scrollspy */
+  .list-group-item {
+    background-color: #F5F5F5;
+    border: none;
+    border-bottom: 1px solid #E6E6E6;
+  }
+  
+  .list-group-item.active {
+    background-color: #E6E6E6;
+    border-color: #E6E6E6;
+    color: #444444;
+    font-weight: bold;
+  }
+  
+  /* Estilos para el Modal */
+  .modal-content {
+    border-radius: 0;
+  }
+  
+  .modal-header, .modal-footer {
+    background-color: #F5F5F5;
+    border-color: #E6E6E6;
+  }
+  
+  .modal-footer button {
+    border-radius: 0;
+  }
+  
+  /* Estilos generales */
+  .card {
+    border: none;
+    margin-bottom: 10px;
+  }
+  
+  .card-header {
+    background-color: #F5F5F5;
+    border-color: #E6E6E6;
+    color: #444444;
+    font-weight: bold;
+  }
+  
+  .card-body {
+    padding: 0;
+  }
+  

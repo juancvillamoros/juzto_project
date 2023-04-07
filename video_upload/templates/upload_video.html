@@ -1,6 +1,5 @@
-{% block content %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -20,41 +19,87 @@
     <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
 </head>
 
-<body>
-    <div class="container mt-5">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">Sube tu audiencia virtual</div>
-                    <div class="card-body">
-                        <form method="post" enctype="multipart/form-data">
-                            {% csrf_token %}
-                            <div class="mb-3">
-                                <label for="cedula" class="form-label">Cédula</label>
-                                <input type="text" class="form-control" id="cedula" name="cedula">
+<body id="page-top">
+    <!-- Navigation -->
+    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+        <!-- Navbar Brand-->
+        <a class="navbar-brand ps-3" href="{% url 'dashboard' %}">Inicio</a>
+    </nav>
+
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                <div class="sb-sidenav-menu">
+                    <div class="nav">
+                        <div class="sb-sidenav-menu-heading">Acciones</div>
+                        <a class="nav-link collapsed" href="{% url 'video_upload:upload_video' %}"
+                            data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false"
+                            aria-controls="collapseLayouts">
+                            <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                            Subir un video
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <a class="nav-link collapsed" href="{% url 'capacitaciones' %}" data-bs-toggle="collapse" data-bs-target="#collapsePages"
+                            aria-expanded="false" aria-controls="collapsePages">
+                            <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                            Capacitaciones
+                        </a>
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages"
+                            aria-expanded="false" aria-controls="collapsePages">
+                            <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                            Reportar un Bug
+                        </a>
+                        <hr>
+                        <ul class="navbar-nav">
+                            <div class="sb-sidenav-menu-heading">Hola! {{ user.first_name }}</div>
+                            <div class="username logged">
+                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                                <div class="small"> </div>
                             </div>
-                            <div class="mb-3">
-                                <label for="id_audiencia" class="form-label">ID Audiencia</label>
-                                <input type="text" class="form-control" id="id_audiencia" name="id_audiencia">
-                            </div>
-                            <div class="mb-3">
-                                <label for="id_comparendo" class="form-label">ID Comparendo</label>
-                                <input type="text" class="form-control" id="id_comparendo" name="id_comparendo">
-                            </div>
-                            <div class="mb-3">
-                                <label for="video" class="form-label">Video</label>
-                                <input type="file" class="form-control" id="video" name="video">
-                            </div>
-                            <div class="d-grid gap-2">
-                                <button type="submit" class="btn btn-primary">Subir</button>
-                            </div>
-                        </form>
+                            <li class="nav-item">
+                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                                <a class="nav-link" href="{% url 'sign_out' %}">Cerrar sesión</a>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+            </nav>
+        </div>
+        {% block content %}
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header">Sube tu audiencia virtual</div>
+                        <div class="card-body">
+                            <form method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="mb-3">
+                                    <label for="cedula" class="form-label">Cédula</label>
+                                    <input type="text" class="form-control" id="cedula" name="cedula">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="id_audiencia" class="form-label">ID Audiencia</label>
+                                    <input type="text" class="form-control" id="id_audiencia" name="id_audiencia">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="id_comparendo" class="form-label">ID Comparendo</label>
+                                    <input type="text" class="form-control" id="id_comparendo" name="id_comparendo">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="video" class="form-label">Video</label>
+                                    <input type="file" class="form-control" id="video" name="video">
+                                </div>
+                                <div class="d-grid gap-2">
+                                    <button type="submit" class="btn btn-primary">Subir</button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+        {% endblock %}
 </body>
-
 </html>
-{% endblock %}

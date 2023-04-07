@@ -23,40 +23,44 @@
     <!-- Navigation -->
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!-- Navbar Brand-->
-        <a class="navbar-brand ps-3" href="#">Start Bootstrap</a>
+        <a class="navbar-brand ps-3" href="{% url 'dashboard' %}">Inicio</a>
 
 
     </nav>
-    
+
     <div id="layoutSidenav">
         <div id="layoutSidenav_nav">
             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
                     <div class="nav">
                         <div class="sb-sidenav-menu-heading">Acciones</div>
-                        <a class="nav-link collapsed" href={% url 'video_upload:upload_video' %}
+                        <a class="nav-link collapsed" href="{% url 'video_upload:upload_video' %}"
                             data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false"
                             aria-controls="collapseLayouts">
                             <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                             Subir un video
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
+                        <a class="nav-link collapsed" href="{% url 'capacitaciones' %}" data-bs-toggle="collapse" data-bs-target="#collapsePages"
+                            aria-expanded="false" aria-controls="collapsePages">
+                            <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                            Capacitaciones</a>
                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages"
                             aria-expanded="false" aria-controls="collapsePages">
                             <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                            Reportar
-                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                        </a>
-
-                        <a class="nav-link" href="#">Capacitaciones</a>
+                            Reportar un Bug</a>
                         <hr>
-                        <div class="username logged">
-                            <div class="small">Hola! {{ user.first_name }} </div>
-                            
-                        </div>
                         <ul class="navbar-nav">
+                        <div class="sb-sidenav-menu-heading">Hola! {{ user.first_name }}</div>
+                        <div class="username logged">
+                            <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                        </div>
                             <li class="nav-item">
-                                <a class="nav-link" href="{% url 'sign_out' %}">Cerrar sesión</a>
+                                
+                                <a class="nav-link collapsed" href="{% url 'sign_out' %}" data-bs-toggle="collapse" data-bs-target="#collapsePages"
+                                aria-expanded="false" aria-controls="collapsePages" >
+                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                                Cerrar sesión</a>
                             </li>
                         </ul>
 
