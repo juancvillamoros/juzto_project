@@ -6,7 +6,7 @@ def index(request):
     context = {'playlists': playlists}
     return render(request, 'capacitaciones/index.html', context)
 
-def video(request, video_id):
+def videoTutorial(request, video_id):
     video = Video.objects.get(id=video_id)
     playlist = video.playlist
     videos = playlist.videos.all()
