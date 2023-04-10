@@ -1,6 +1,9 @@
 from django.db import models
+from django.contrib.auth.models import User
+
 
 class Reporte(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=False, default=None)
     nombre = models.CharField(max_length=50)
     descripcion = models.TextField()
     archivo = models.FileField(upload_to='archivos/', null=True, blank=True)

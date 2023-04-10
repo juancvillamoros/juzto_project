@@ -1,15 +1,35 @@
-
-
+{% extends 'dashboard/base.html' %}
+{% block title %}
+Juzto Audiencias | Formulario de Reporte de Bugs
+{% endblock %}
+{% load static %}
 {% block content %}
-<div class="container my-5">
-  <div class="row">
-    <div class="col-md-8 offset-md-2">
-      <h1>Reportar un Bug</h1>
-      <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">Enviar</button>
-      </form>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header">Rellena el formulario para reportar el bug.</div>
+        <div class="card-body">
+          <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="mb-3">
+              <label for="nombre" class="form-label fw-bold">Título</label>
+              <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Escribe un título aquí">
+            </div>
+            <div class="form-floating mb-3">
+              <textarea class="form-control" id="descripcion" name="descripcion" for="descripcion" placeholder="Describe el bug aquí" id="floatingTextarea2" style="height: 100px"></textarea>
+              <label for="floatingTextarea2">Descripción</label>
+            </div>
+            <div class="mb-3">
+              <label for="archivo" class="form-label fw-bold">Archivo</label>
+              <input type="file" class="form-control" id="archivo" name="archivo">
+            </div>
+            <div class="d-grid gap-2">
+              <button type="submit" class="btn btn-primary">Reportar</button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
   </div>
 </div>

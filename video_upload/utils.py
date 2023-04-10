@@ -4,6 +4,8 @@ from io import BytesIO
 import boto3
 from django.conf import settings
 from moviepy.video.io.VideoFileClip import VideoFileClip
+import requests
+from .models import Video
 
 
 def compress_and_upload_to_s3(video_file, filename, content_type):
@@ -42,3 +44,35 @@ def compress_and_upload_to_s3(video_file, filename, content_type):
             os.remove(video_path)
 
             return url
+
+
+def update_video_url_in_zoho(id_audiencia, video_url):
+    try:
+        # Actualizar el campo 'video' en el modelo Video
+        video = Video.objects.get(id_audiencia=id_audiencia)
+        video.video_url = video_url
+        video.save()
+
+        # Construir el cuerpo de la solicitud
+        data = {
+            "data": [
+                {
+                    "video": video_url
+                }
+            ]
+        }
+
+        # Enviar la solicitud a la API de Zoho
+        url = f'http://ec2-44-207-20-96.compute-1.amazonaws.com/hearings/{id_audiencia}/'
+        headers = {'Authorization': f'Bearer {settings.ZOHO_AUTH_TOKEN}'}
+        response = requests.put(url, json=data, headers=headers)
+
+        # Verificar que la solicitud se haya completado correctamente
+        if response.status_code == 200:
+            return True
+        else:
+            return False
+    except Exception as e:
+        # Manejar cualquier error que se produzca
+        print(f'Error actualizando el campo "video" del modelo Video: {e}')
+        return False

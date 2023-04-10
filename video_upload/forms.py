@@ -1,7 +1,14 @@
 from django import forms
+from .models import Video
 
-class VideoForm(forms.Form):
-    cedula = forms.CharField(max_length=20)
-    id_audiencia = forms.CharField(max_length=20)
-    id_comparendo = forms.CharField(max_length=20)
-    video = forms.FileField()
+
+class VideoForm(forms.ModelForm):
+    class Meta:
+        model = Video
+        fields = ['cedula', 'id_audiencia', 'id_comparendo','video']
+        widgets = {
+            'cedula': forms.TextInput(attrs={'class': 'form-control'}),
+            'id_audiencia': forms.TextInput(attrs={'class': 'form-control'}),
+            'id_comparendo': forms.TextInput(attrs={'class': 'form-control'}),
+            'video': forms.FileInput(attrs={'class': 'form-control'}),
+        }

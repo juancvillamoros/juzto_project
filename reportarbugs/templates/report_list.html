@@ -1,3 +1,9 @@
+{% extends 'dashboard/base.html' %}
+{% block title %}
+Juzto Audiencias | Lista de Bugs Reportados
+{% endblock %}
+
+{% load static %}
 {% block content %}
 <div class="container my-5">
   <div class="row">
@@ -18,10 +24,11 @@
         <tbody>
           {% for reporte in reportes %}
           <tr>
-            <th scope="row">{{ Reporte.pk }}</th>
+            <th scope="row">{{ forloop.counter }}</th>
             <td>{{ Reporte.titulo }}</td>
             <td>{{ Reporte.descripcion }}</td>
-            <td><img src="{{ Reporte.media.url }}" class="img-thumbnail" width="100" alt="{{ Reporte.titulo }}"></td>
+            <td><img src="{{ Reporte.media.url }}" class="img-thumbnail" width="100" alt="{{ Reporte.titulo }}">
+            </td>
             <td>{{ Reporte.creado_en }}</td>
             <td>{{ Reporte.actualizado_en }}</td>
             <td>{{ Reporte.resuelto }}</td>

@@ -13,7 +13,6 @@ urlpatterns = [
     path('dashboard/', include('dashboard.urls')),
     path('video_upload/', include('video_upload.urls')),
     path('video_list/', include('video_upload.urls', namespace='video_list')), 
-    path('capacitaciones/', include('capacitaciones.urls')),
     path('capacitaciones/', capacitaciones_views.index, name='capacitaciones'),
     path('reportar/', include('reportarbugs.urls')),
     path('listar_reportes/', include('reportarbugs.urls', namespace='reportarbugs')),
