@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:13.4
+    command: ["postgres", "-c", "max_connections=300", "-c", "shared_buffers=512MB"]
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_DB=juzto_videos_audiencia
+      - POSTGRES_USER=juzto
+      - POSTGRES_PASSWORD=tiempo90
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.web
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/code
+    ports:
+      - "8080:8000"
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=postgres://juzto:tiempo90@db:5432/juzto_videos_audiencia
+
+volumes:
+  postgres_data:

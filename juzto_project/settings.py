@@ -39,12 +39,18 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    #apps
     'dashboard',
     'authentication',
     'video_upload',
     'reportarbugs',
     'capacitaciones',
+    #dependencias
+    'psycopg2',
+    'boto3',
+    'moviepy',
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -56,7 +62,9 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+
 ROOT_URLCONF = 'juzto_project.urls'
+
 
 TEMPLATES = [
     {
@@ -75,22 +83,21 @@ TEMPLATES = [
 ]
 
 
-
-
-
 WSGI_APPLICATION = 'juzto_project.wsgi.application'
 
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
+# Base de datos en desarrollo
 
+"""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'juztoaudiencias',
         'USER': 'root',
         'PASSWORD': 'tiempo90',
-        'HOST': 'localhost',
+        'HOST': 'db',
         'PORT': '3306',
         'OPTIONS': {
             'charset': 'utf8mb4',
@@ -100,12 +107,23 @@ DATABASES = {
         }
     }
 }
+"""
 
+# Base de datos en producción
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'juzto_videos_audiencia',
+        'USER': 'juzto',
+        'PASSWORD': 'tiempo90',
+        'HOST': 'db',
+        'PORT': 5432,
+    }
+}
 
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -124,13 +142,9 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
-
 LANGUAGE_CODE = 'es'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_TZ = True
 
 
@@ -155,7 +169,7 @@ LOGIN_REDIRECT_URL = reverse_lazy('dashboard')
 # AWS S3 configuration
 AWS_ACCESS_KEY_ID = '472786707597'
 AWS_SECRET_ACCESS_KEY = 'Hj2Op4l1$T/gYR5V8.'
-AWS_STORAGE_BUCKET_NAME = 'arn:aws:s3:::videosaudiencia'
-AWS_S3_REGION_NAME = 'us-east-2'
+AWS_STORAGE_BUCKET_NAME = 'arn:aws:s3:::videosaudiencias'
+AWS_S3_REGION_NAME = 'us-east-1'
 AWS_S3_FILE_OVERWRITE = False
 AWS_DEFAULT_ACL = None
