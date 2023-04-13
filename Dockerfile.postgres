@@ -9,7 +9,7 @@ ENV POSTGRES_CONFIG_FILE /etc/postgresql/postgresql.conf
 ENV POSTGRES_HOST localhost
 
 # Exponemos el puerto por defecto de PostgreSQL
-EXPOSE 5432
+EXPOSE 5433
 
 # Ejecutamos PostgreSQL
 CMD ["postgres", "-D", "/var/lib/postgresql/13/main", "-c", "config_file=/etc/postgresql/13/main/postgresql.conf"]

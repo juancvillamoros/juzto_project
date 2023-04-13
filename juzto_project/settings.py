@@ -116,7 +116,7 @@ DATABASES = {
         'NAME': 'juzto_videos_audiencia',
         'USER': 'juzto',
         'PASSWORD': 'tiempo90',
-        'HOST': 'db',
+        'HOST': 'database',
         'PORT': 5432,
     }
 }
