@@ -113,10 +113,10 @@ DATABASES = {
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'juzto_videos_audiencia',
-        'USER': 'juzto',
-        'PASSWORD': 'tiempo90',
-        'HOST': 'database',
+        'NAME': 'legal-ext-video',
+        'USER': 'au_video_ext',
+        'PASSWORD': 'y.&hl5.R5E1fX!ld5g7Lm2dM',
+        'HOST': 'legal-ext-video.ccwsv3fmimn3.us-east-1.rds.amazonaws.com',
         'PORT': 5432,
     }
 }

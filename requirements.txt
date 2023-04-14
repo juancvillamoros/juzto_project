@@ -1,8 +1,6 @@
 Django==4.1.7
-mysqlclient==2.1.1
 boto3==1.26.104
 django-environ
-PyMySQL
 moviepy
 autopep8
 google-auth 
