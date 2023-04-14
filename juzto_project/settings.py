@@ -117,7 +117,7 @@ DATABASES = {
         'USER': 'au_video_ext',
         'PASSWORD': 'y.&hl5.R5E1fX!ld5g7Lm2dM',
         'HOST': 'legal-ext-video.ccwsv3fmimn3.us-east-1.rds.amazonaws.com',
-        'PORT': 5432,
+        'PORT': 5432
     }
 }
 
