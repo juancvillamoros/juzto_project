@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Playlist, Video
+from django.shortcuts import get_object_or_404
 
 def index(request):
     playlists = Playlist.objects.all()
@@ -7,7 +8,7 @@ def index(request):
     return render(request, 'capacitaciones/index.html', context)
 
 def videoTutorial(request, video_id):
-    video = Video.objects.get(id=video_id)
+    video = get_object_or_404(Video, id=video_id)
     playlist = video.playlist
     videos = playlist.videos.all()
 

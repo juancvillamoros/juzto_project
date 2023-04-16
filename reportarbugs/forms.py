@@ -10,3 +10,7 @@ class ReporteForm(forms.ModelForm):
             'descripcion': forms.TextInput(attrs={'class': 'form-control'}),
             'archivo': forms.FileInput(attrs={'class': 'form-control'}),
         }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['csrfmiddlewaretoken'] = forms.CharField(widget=forms.HiddenInput())

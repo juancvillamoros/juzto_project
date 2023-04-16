@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.views.decorators.csrf import csrf_protect
 from .forms import ReporteForm
 from .models import Reporte
 from django.contrib.auth.decorators import login_required
@@ -10,7 +11,9 @@ def report_list(request):
     reportes = Reporte.objects.filter(user=request.user).order_by('-creado_en')
     return render(request, 'report_list.html', {'reportes': reportes})
 
+
 @login_required
+@csrf_protect
 def report_bug(request):
     if request.method == 'POST':
         form = ReporteForm(request.POST, request.FILES)
