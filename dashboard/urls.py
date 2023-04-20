@@ -6,5 +6,4 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('dashboard/', DashboardView.as_view(), name='dashboard'),
-
 ] 

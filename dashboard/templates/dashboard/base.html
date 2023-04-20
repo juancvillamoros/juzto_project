@@ -38,14 +38,9 @@
                             Audiencias
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="{% url 'video_upload:upload_video' %}">Subir una
-                                    audiencia</a></li>
-                            <li><a class="dropdown-item" href="{% url 'video_upload:video_list' %}">Listar
-                                    audiencias</a></li>
+                            <li><a class="dropdown-item" href="{% url 'upload_video' %}">Subir una audiencia</a></li>
+                            <li><a class="dropdown-item" href="{% url 'video_list' %}">Listar audiencias</a></li>
                         </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'capacitaciones' %}">Capacitaciones</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -53,11 +48,13 @@
                             Reportar
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="{% url 'reportarbugs:report_bug' %}">Reportar un bug</a>
-                            </li>
+                            <li><a class="dropdown-item" href="{% url 'reportarbugs:report_bug' %}">Reportar un bug</a></li>
                             <li><a class="dropdown-item" href="{% url 'reportarbugs:report_list' %}">Listar bugs
                                     reportados</a></li>
                         </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'capacitaciones' %}">Capacitaciones</a>
                     </li>
                 </ul>
                 <span class="navbar-text me-auto">
@@ -71,6 +68,7 @@
             </div>
         </div>
     </nav>
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
