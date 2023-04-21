@@ -6,41 +6,38 @@ Juzto Audiencias | Lista de Bugs Reportados
 {% load static %}
 {% block content %}
 <div class="container my-5">
-  <div class="row">
-    <div class="col-md-8 offset-md-2">
-      <h1>Mis reportes de Bugs</h1>
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Título</th>
-            <th scope="col">Descripción</th>
-            <th scope="col">Imagen</th>
-            <th scope="col">Fecha de Creación</th>
-            <th scope="col">Fecha de Actualización</th>
-            <th scope="col">Resuelto?</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for reporte in reportes %}
-          <tr>
-            <th scope="row">{{ forloop.counter }}</th>
-            <td>{{ Reporte.titulo }}</td>
-            <td>{{ Reporte.descripcion }}</td>
-            <td><img src="{{ Reporte.media.url }}" class="img-thumbnail" width="100" alt="{{ Reporte.titulo }}">
-            </td>
-            <td>{{ Reporte.creado_en }}</td>
-            <td>{{ Reporte.actualizado_en }}</td>
-            <td>{{ Reporte.resuelto }}</td>
-          </tr>
-          {% empty %}
-          <tr>
-            <td colspan="5">No hay reportes de bugs todavía.</td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-    </div>
-  </div>
+
+  <h1>Mis reportes de Bugs</h1>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Título</th>
+        <th scope="col">Descripción</th>
+        <th scope="col">Imagen</th>
+        <th scope="col">Fecha de Creación</th>
+        <th scope="col">Fecha de Actualización</th>
+        <th scope="col">Resuelto?</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for reporte in reportes %}
+      <tr>
+        <th scope="row">{{ forloop.counter }}</th>
+        <td>{{ Reporte.titulo }}</td>
+        <td>{{ Reporte.descripcion }}</td>
+        <td><img src="{{ Reporte.media.url }}" class="img-thumbnail" width="100" alt="{{ Reporte.titulo }}"></td>
+        <td>{{ Reporte.creado_en }}</td>
+        <td>{{ Reporte.actualizado_en }}</td>
+        <td>{{ Reporte.resuelto }}</td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="7" class="text-center">No hay reportes de bugs todavía.</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
 </div>
 {% endblock %}
