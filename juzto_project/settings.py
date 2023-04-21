@@ -169,7 +169,12 @@ LOGIN_REDIRECT_URL = reverse_lazy('dashboard')
 # AWS S3 configuration
 AWS_ACCESS_KEY_ID = '472786707597'
 AWS_SECRET_ACCESS_KEY = 'Hj2Op4l1$T/gYR5V8.'
-AWS_STORAGE_BUCKET_NAME = 'arn:aws:s3:::videosaudiencias'
+AWS_STORAGE_BUCKET_NAME = 'videosaudiencias'
+AWS_S3_ENDPOINT_URL = 'varn:aws:s3:us-east-1:472786707597:accesspoint/videosaudiencia'
 AWS_S3_REGION_NAME = 'us-east-1'
 AWS_S3_FILE_OVERWRITE = False
 AWS_DEFAULT_ACL = None
+
+#Zoho CRM configuration
+ZOHO_API_URL = 'http://ec2-44-207-20-96.compute-1.amazonaws.com/hearings/'
+ZOHO_AUTH_TOKEN = 'd5b70363a8d8a723e1fd241406cec0b66bc35c16'

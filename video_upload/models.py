@@ -9,7 +9,7 @@ class Video(models.Model):
     cedula = models.CharField(max_length=255, validators=[RegexValidator(regex='^[0-9]{10}$', message='Cedula invalida')])
     id_audiencia = models.CharField(max_length=255, validators=[RegexValidator(regex='^[0-9]{10}$', message='audiencia invalida')])
     id_comparendo = models.CharField(max_length=255, validators=[RegexValidator(regex='^[0-9]{10}$', message='comparendo invalida')])
-    video_url = models.URLField(blank=True)
+    video_url = models.SlugField(unique=True, max_length=255, blank=True)
     fecha_subida = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
