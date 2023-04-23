@@ -4,76 +4,20 @@ Juzto Audiencias | Formulario de Reporte de Bugs
 {% endblock %}
 {% load static %}
 {% block content %}
-<div class="container mt-5">
-  <div class="row justify-content-center">
-    <div class="col-md-8">
-      <div class="card">
-        <div class="card-header">Rellena el formulario para reportar el bug.</div>
-        <div class="card-body">
-          <form method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            <div class="mb-3">
-              <label for="nombre" class="form-label fw-bold">Título</label>
-              <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Escribe un título aquí"
-                required>
-            </div>
-            <div class="form-floating mb-3">
-              <textarea class="form-control" id="descripcion" name="descripcion" for="descripcion"
-                placeholder="Describe el bug aquí" id="floatingTextarea2" style="height: 100px" required></textarea>
-              <label for="floatingTextarea2">Descripción</label>
-            </div>
-            <div class="mb-3">
-              <label for="archivo" class="form-label fw-bold">Archivo</label>
-              <input type="file" class="form-control" id="archivo" name="archivo" required>
-            </div>
-            <!-- Agregar el botón para abrir el modal -->
-            <div class="d-grid gap-2">
-              <button type="submit" class="btn btn-primary" data-bs-toggle="modal"
-                data-bs-target="#mensaje_exito">Reportar</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-
-
-    <!-- Convertir el mensaje de éxito en un modal -->
-    <div class="modal fade" id="mensaje_exito" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Reporte de Bug Enviado</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <p>Tu reporte de bug ha sido enviado correctamente con el id <span id="id_reporte"></span>.</p>
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header">Rellena el formulario para reportar el bug.</div>
+          <div class="card-body">
+            <form method="post" enctype="multipart/form-data" action="{% url 'report_bug' %}">
+              {% csrf_token %}
+              {{ form.as_p }}
+              <button type="submit" class="btn btn-primary">Enviar reporte</button>
+            </form>
           </div>
         </div>
       </div>
     </div>
-
   </div>
-</div>
-<script>
-  document.getElementById("boton_reportar").addEventListener("click", function enviarFormulario() {
-    // Obtener los valores de los campos del formulario
-    var titulo = document.getElementById("nombre").value;
-    var descripcion = document.getElementById("descripcion").value;
-    var archivo = document.getElementById("archivo").value;
-
-    // Verificar que los campos no estén vacíos
-    if (titulo === "" || descripcion === "" || archivo === "") {
-      // Si hay campos vacíos, no hacer nada
-      return;
-    }
-
-    // Si los campos están completos, enviar el formulario y abrir el modal
-    document.forms[0].submit();
-    var modal = new bootstrap.Modal(document.getElementById('mensaje_exito'));
-    modal.show();
-  });
-
-
-</script>
-
 {% endblock %}

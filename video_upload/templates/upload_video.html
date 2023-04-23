@@ -7,41 +7,16 @@ Juzto Audiencias | Formulario de Audiencias
 {% block content %}
 <div class="container mt-5">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-6">
             <div class="card">
-                <div class="card-header">Sube tu audiencia virtual</div>
+                <div class="card-header">
+                    Rellena el formulario para subir tu audiencia.
+                </div>
                 <div class="card-body">
-                    <form method="post" enctype="multipart/form-data">
+                    <form method="post" enctype="multipart/form-data" action="{% url 'upload_video' %}">
                         {% csrf_token %}
-                        <div class="mb-3">
-                            <label for="cedula" class="form-label">Cédula</label>
-                            <input type="text" class="form-control" id="cedula" name="cedula"
-                                placeholder="Escribe la cédula del cliente aquí">
-                        </div>
-                        <div class="mb-3">
-                            <label for="id_audiencia" class="form-label">ID Audiencia</label>
-                            <input type="text" class="form-control" id="id_audiencia" name="id_audiencia"
-                                placeholder="Escribe la identificación de la audiencia virtual aquí">
-                        </div>
-                        <div class="mb-3">
-                            <label for="id_comparendo" class="form-label">ID Comparendo</label>
-                            <input type="text" class="form-control" id="id_comparendo" name="id_comparendo"
-                                placeholder="Escribe la identificación del comparendo del cliente aquí">
-                        </div>
-                        <div class="mb-3">
-                            <label for="video" class="form-label">Video</label>
-                            <input type="file" class="form-control" id="video" name="video">
-                        </div>
-                        <div class="d-grid gap-2">
-                            <button type="submit" class="btn btn-primary">Subir</button>
-                        </div>
-                        {% if messages %}
-                        <ul class="messages">
-                            {% for message in messages %}
-                                <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
-                            {% endfor %}
-                        </ul>
-                        {% endif %}
+                        {{ form.as_p }}
+                        <button type="submit" class="btn btn-primary">Cargar Video</button>
                     </form>
                 </div>
             </div>
@@ -49,7 +24,3 @@ Juzto Audiencias | Formulario de Audiencias
     </div>
 </div>
 {% endblock %}
-
-</body>
-
-</html>

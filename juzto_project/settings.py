@@ -178,3 +178,7 @@ AWS_DEFAULT_ACL = None
 #Zoho CRM configuration
 ZOHO_API_URL = 'http://ec2-44-207-20-96.compute-1.amazonaws.com/hearings/'
 ZOHO_AUTH_TOKEN = 'd5b70363a8d8a723e1fd241406cec0b66bc35c16'
+
+CSRF_COOKIE_PATH = ['/report/', '/upload_video', '/sign_out/']
+
+MAX_UPLOAD_SIZE = "10485760"  # 10 MB (en bytes)

@@ -2,8 +2,6 @@
 {% block title %}
 Juzto Audiencias | Lista de Bugs Reportados
 {% endblock %}
-
-{% load static %}
 {% block content %}
 <div class="container my-5">
 
@@ -24,12 +22,12 @@ Juzto Audiencias | Lista de Bugs Reportados
       {% for reporte in reportes %}
       <tr>
         <th scope="row">{{ forloop.counter }}</th>
-        <td>{{ Reporte.titulo }}</td>
-        <td>{{ Reporte.descripcion }}</td>
-        <td><img src="{{ Reporte.media.url }}" class="img-thumbnail" width="100" alt="{{ Reporte.titulo }}"></td>
-        <td>{{ Reporte.creado_en }}</td>
-        <td>{{ Reporte.actualizado_en }}</td>
-        <td>{{ Reporte.resuelto }}</td>
+        <td>{{ reporte.titulo }}</td>
+        <td>{{ reporte.descripcion }}</td>
+        <td><img src="{{ reporte.media.url }}" class="img-thumbnail" width="100" alt="{{ reporte.titulo }}"></td>
+        <td>{{ reporte.creado_en }}</td>
+        <td>{{ reporte.actualizado_en }}</td>
+        <td>{{ reporte.resuelto }}</td>
       </tr>
       {% empty %}
       <tr>
