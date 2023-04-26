@@ -5,35 +5,5 @@ Juzto Audiencias | Dashboard
 {% endblock %}
 
 {% block content %}
-<div class="container mt-5">
-  <h1 class="mb-4">Mis audiencias virtuales</h1>
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Cédula</th>
-        <th scope="col">ID Audiencia</th>
-        <th scope="col">ID Comparendo</th>
-        <th scope="col">Video</th>
-        <th scope="col">Fecha de subida</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for video in videos %}
-      <tr>
-        <th scope="row">{{ forloop.counter }}</th>
-        <td>{{ video.cedula }}</td>
-        <td>{{ video.id_audiencia }}</td>
-        <td>{{ video.id_comparendo }}</td>
-        <td><a href="{{ video.video.url }}" target="_blank">{{ video.video.name }}</a></td>
-        <td>{{ video.fecha_subida }}</td>
-      </tr>
-      {% empty %}
-      <tr>
-        <td colspan="6" class="text-center">No se encontraron videos</td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-</div>
+
 {% endblock %}

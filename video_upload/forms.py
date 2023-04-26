@@ -1,9 +1,13 @@
 from django import forms
 from .models import Video
-from .utils import VideoCompressor
 
 
 class VideoForm(forms.ModelForm):
+    """Form for handling the Video model."""
+    def __init__(self, *args, user=None, **kwargs):
+        super().__init__(*args, **kwargs)
+        self._user = user
+
     class Meta:
         model = Video
         fields = ['cedula', 'id_audiencia', 'id_comparendo', 'video']
@@ -14,10 +18,9 @@ class VideoForm(forms.ModelForm):
             'video': forms.FileInput(attrs={'class': 'form-control'}),
         }
 
-    def clean(self):
-        cleaned_data = super().clean()
-        video = cleaned_data.get('video')
-        if video:
-            compressed_video_path = VideoCompressor(video)
-            self.cleaned_data['video'] = compressed_video_path
-        return cleaned_data
+    def save(self, commit=True):
+        video = super().save(commit=False)
+        video.user = self._user
+        if commit:
+            video.save()
+        return video

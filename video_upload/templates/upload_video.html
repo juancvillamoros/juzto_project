@@ -4,6 +4,10 @@
 Juzto Audiencias | Formulario de Audiencias
 {% endblock %}
 
+{% block extra_head %}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+{% endblock %}
+
 {% block content %}
 <div class="container mt-5">
     <div class="row justify-content-center">
@@ -13,7 +17,7 @@ Juzto Audiencias | Formulario de Audiencias
                     Rellena el formulario para subir tu audiencia.
                 </div>
                 <div class="card-body">
-                    <form method="post" enctype="multipart/form-data" action="{% url 'upload_video' %}">
+                    <form method="post" enctype="multipart/form-data" action="{% url 'upload_video' %}" id="upload-form">
                         {% csrf_token %}
                         {{ form.as_p }}
                         <button type="submit" class="btn btn-primary">Cargar Video</button>
@@ -23,4 +27,59 @@ Juzto Audiencias | Formulario de Audiencias
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block extra_js %}
+<script type="text/javascript">
+$(document).ready(function() {
+  var form = $('#upload-form');
+  form.submit(function(event) {
+    event.preventDefault();
+    var formData = new FormData(form[0]);
+    Swal.fire({
+      title: 'Subiendo video',
+      text: 'Espere por favor...',
+      allowOutsideClick: false,
+      onBeforeOpen: function() {
+        var xhr = $.ajaxSettings.xhr();
+        xhr.upload.onprogress = function(event) {
+          var percent = Math.round((event.loaded / event.total) * 100);
+          Swal.getContent().querySelector('p').textContent = 'Subiendo el video... ' + percent + '%';
+        };
+        $.ajax({
+          xhr: function() {
+            return xhr;
+          },
+          type: 'POST',
+          url: form.attr('action'),
+          data: formData,
+          processData: false,
+          contentType: false,
+        }).done(function(response) {
+          Swal.fire({
+            icon: 'success',
+            title: 'Video cargado',
+            text: 'El video fue cargado satisfactoriamente.',
+            showConfirmButton: false,
+            timer: 2000
+          })
+        }).fail(function() {
+          Swal.fire({
+            icon: 'error',
+            title: 'Error al cargar el video',
+            text: 'Hubo un problema al cargar el video.',
+            showConfirmButton: true,
+            confirmButtonText: 'Aceptar'
+          });
+        });
+      },
+      html: '<p>Subiendo el video... 0%</p>',
+      showCancelButton: false,
+      showConfirmButton: false,
+      allowEscapeKey: false,
+      allowOutsideClick: false
+    });
+  });
+});
+</script>
 {% endblock %}

@@ -13,10 +13,11 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 from pathlib import Path
 import os
 from django.urls import reverse_lazy
+import pytz
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
-
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
@@ -143,7 +144,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 LANGUAGE_CODE = 'es'
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Bogota'
 USE_I18N = True
 USE_TZ = True
 
@@ -167,13 +168,16 @@ LOGIN_REDIRECT_URL = reverse_lazy('dashboard')
 
 
 # AWS S3 configuration
-AWS_ACCESS_KEY_ID = '472786707597'
-AWS_SECRET_ACCESS_KEY = 'Hj2Op4l1$T/gYR5V8.'
+AWS_ACCESS_KEY_ID = 'AKIAW4FCIUSGY3AHKFF4'
+AWS_SECRET_ACCESS_KEY = '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'
 AWS_STORAGE_BUCKET_NAME = 'videosaudiencias'
-AWS_S3_ENDPOINT_URL = 'varn:aws:s3:us-east-1:472786707597:accesspoint/videosaudiencia'
+AWS_S3_SIGNATURE_NAME = 's3v4'
 AWS_S3_REGION_NAME = 'us-east-1'
 AWS_S3_FILE_OVERWRITE = False
 AWS_DEFAULT_ACL = None
+AWS_S3_VERIFY = True
+STORAGES = {"default": {"BACKEND": "storages.backends.s3boto3.S3Boto3Storage"}}
+
 
 #Zoho CRM configuration
 ZOHO_API_URL = 'http://ec2-44-207-20-96.compute-1.amazonaws.com/hearings/'
@@ -181,4 +185,9 @@ ZOHO_AUTH_TOKEN = 'd5b70363a8d8a723e1fd241406cec0b66bc35c16'
 
 CSRF_COOKIE_PATH = ['/report/', '/upload_video', '/sign_out/']
 
-MAX_UPLOAD_SIZE = "10485760"  # 10 MB (en bytes)
+
+VIDEO_TEMP_DIR = os.path.join(BASE_DIR, 'video_temp')
+VIDEO_ORIGINAL_DIR = os.path.join(VIDEO_TEMP_DIR, 'original')
+
+
+

@@ -1,7 +1,6 @@
 Django==4.1.7
 boto3==1.26.104
 django-environ
-moviepy
 autopep8
 google-auth 
 google-auth-oauthlib 
@@ -10,3 +9,4 @@ google-api-python-client
 psycopg2
 pytest
 pytz
+django-storages
