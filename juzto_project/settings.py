@@ -49,7 +49,6 @@ INSTALLED_APPS = [
     #dependencias
     'psycopg2',
     'boto3',
-    'moviepy',
 ]
 
 
@@ -164,7 +163,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_REDIRECT_URL = reverse_lazy('dashboard')
+LOGIN_REDIRECT_URL = reverse_lazy('video_list')
 
 
 # AWS S3 configuration

@@ -2,8 +2,6 @@ from django.contrib import admin
 from django.urls import path, include
 from authentication import views as auth_views
 from dashboard import views as home_views
-from dashboard.views import DashboardView
-from capacitaciones import views as capacitaciones_views
 from video_upload import views as video_views
 from reportarbugs import views as bugs_views
 
